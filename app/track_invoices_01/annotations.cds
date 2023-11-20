@@ -1,4 +1,5 @@
 using CatalogService as service from '../../srv/service';
+using from '../../db/schema';
 
 annotate service.track_invoices with @(
     UI.LineItem : [
@@ -252,5 +253,101 @@ annotate service.item_data_for_track with @(
             $Type : 'UI.DataField',
             Value : Total_Amt,
             Label : 'Total_Amt',
+        },]
+);
+annotate service.track_invoices with @(
+    UI.SelectionPresentationVariant #tableView : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : 'Table View',
+    }
+);
+annotate service.parent with @(
+    UI.LineItem #tableView : [
+        {
+            $Type : 'UI.DataField',
+            Value : id,
+            Label : 'id',
+        },{
+            $Type : 'UI.DataField',
+            Value : p_name,
+            Label : 'p_name',
+        },{
+            $Type : 'UI.DataField',
+            Value : partochi.c_name,
+            Label : 'c_name',
+        },],
+    UI.SelectionPresentationVariant #tableView : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : 'Table View parent',
+    }
+);
+annotate service.parent with @(
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'child and gc',
+            ID : 'childandgc',
+            Target : 'partochi/@UI.LineItem#childandgc',
+        },
+    ]
+);
+annotate service.child with @(
+    UI.LineItem #childandgc : [
+        {
+            $Type : 'UI.DataField',
+            Value : c_name,
+            Label : 'c_name',
+        },{
+            $Type : 'UI.DataField',
+            Value : id,
+            Label : 'id',
+        },{
+            $Type : 'UI.DataField',
+            Value : chitogra.g_name,
+            Label : 'g_name',
+        },]
+);
+annotate service.child with @(
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'gc',
+            ID : 'gc',
+            Target : 'chitogra/@UI.LineItem#gc',
+        },
+    ]
+);
+annotate service.gand_child with @(
+    UI.LineItem #gc : [
+        {
+            $Type : 'UI.DataField',
+            Value : id,
+            Label : 'id',
+        },{
+            $Type : 'UI.DataField',
+            Value : g_name,
+            Label : 'g_name',
         },]
 );

@@ -1,6 +1,7 @@
 using { namee } from '../db/schema';
 
 service CatalogService
+
 {
     function getPdfUrl() returns LargeString;
     function getPdfUrl1() returns LargeString;
@@ -78,4 +79,6 @@ service CatalogService
     entity tds as projection on namee.tds;
     entity gst as projection on namee.gst;
     entity supplier_enq as projection on namee.supplier_enq;
+     @odata.draft.enable
+    entity create_inv as projection on namee.create_inv;
 }

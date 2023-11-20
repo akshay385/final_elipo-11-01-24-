@@ -193,6 +193,8 @@ entity item_new
     Material : String(40);
     HSN_Code : String(40);
     Qty : String(40);
+    Qc : Boolean;
+    IGST : Boolean;
     Unit_Price : String(40);
     GL_Acc : String(40);
     Plant : String(40);
@@ -203,6 +205,9 @@ entity item_new
     Tax_Amt : String(40);
     Total_Amt : String(30);	
     bool : Boolean;
+     SGST : String;
+    CGST : String;
+    IGST_val : String;
     item_data_child1 : Association to one New on item_data_child1.invoice_no = invoice;
 }
 
@@ -574,4 +579,21 @@ entity supplier_enq
 }
 
 
+entity create_inv
+{ 
+     key uiid: Integer;
+    key IRN : String;
+    Reference_PO_Number : String;
+    GSTIN : String;
+    Document_Type : String;
+    Reference_Invoice_No : String;
+    Invoice_Date : Date;
+    Posting_Date : Date;
+    Baseline_Date : Date;
+    relll :Composition of many  child on relll.uiid = uiid;
+}
+entity child{
+    key uiid: Integer;
+    rell2: Association to one create_inv;
+}
 

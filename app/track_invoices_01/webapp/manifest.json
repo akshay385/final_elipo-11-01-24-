@@ -127,12 +127,18 @@
                                 }
                             },
                             "initialLoad": "Enabled",
-                            "controlConfiguration": {
-                                "@com.sap.vocabularies.UI.v1.LineItem": {
-                                    "tableSettings": {
-                                        "type": "GridTable"
+                            "views": {
+                                "paths": [
+                                    {
+                                        "key": "tableView1",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
+                                        "entitySet": "parent"
+                                    },
+                                    {
+                                        "key": "tableView",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
                                     }
-                                }
+                                ]
                             }
                         }
                     }
@@ -164,7 +170,8 @@
                                                 },
                                                 "title": "pdf",
                                                 "type": "XMLFragment"
-                                            }
+                                            },
+                                            "type": "XMLFragment"
                                         }
                                     }
                                 },

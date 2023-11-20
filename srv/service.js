@@ -3,6 +3,7 @@ const cds = require('@sap/cds');
 module.exports = cds.service.impl(async function () {
     /* SERVICE ENTITIES */
     let {
+        parent,
         inv_assg,
         item_data_for_invassign,
         asgn_inv_to,
@@ -844,6 +845,8 @@ this.before('READ', New, async (req) => {
                     GST_Per: `${space.gst_per}% ${gstLabel}`,
                     Taxable_Amt: `${tot}`,
                     Tax_Amt : `${TA} CGST AMT : ${TA/2} SGST AMT : ${TA/2}`,
+                    SGST : `${TA/2}`,
+                    CGST : `${TA/2}`,
                     Total_Amt: `${tot_amt}`,
                     });
                     item_cnt++;
@@ -2187,8 +2190,6 @@ this.on('shownpo',New.drafts,async req => {
 this.on('hidenpo',New.drafts,async req => {
     await cds.update(New.drafts, req.params[0].ID).set({value: 1, value1:true});
 });
-
-
 
 
 });

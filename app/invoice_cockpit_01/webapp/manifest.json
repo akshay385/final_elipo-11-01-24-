@@ -258,6 +258,16 @@
                                             "visible": true,
                                             "enabled": true,
                                             "text": "show/hide"
+                                        },
+                                        "actionid11": {
+                                            "press": "invoicecockpit01.ext.controller.Draftattachment.upload",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "upload attachment",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "pdf"
+                                            }
                                         }
                                     }
                                 }
@@ -265,7 +275,7 @@
                             "controlConfiguration": {
                                 "child_item/@com.sap.vocabularies.UI.v1.LineItem#itm_details": {
                                     "tableSettings": {
-                                        "type": "GridTable"
+                                        "type": "ResponsiveTable"
                                     }
                                 }
                             }

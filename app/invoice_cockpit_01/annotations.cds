@@ -91,11 +91,6 @@ annotate service.New with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'Ref_invoice_no1',
-                Value : Ref_invoice_no1,
-            },
-            {
-                $Type : 'UI.DataField',
                 Label : 'invoice_date',
                 Value : invoice_date,
             },
@@ -226,6 +221,40 @@ annotate service.New with @(
         },
     ]
 );
+
+annotate service.item_new with @UI.FieldGroup #FieldGroup2 : {
+    Data : [
+        {
+            $Type : 'UI.DataField',
+            Value : SGST,
+            Label : 'SGST%',
+            ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
+            true]}}
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CGST,
+            Label : 'CGST%',
+            ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
+            true]}}
+        },
+      {
+            $Type : 'UI.DataField',
+            Value : IGST_val,
+            Label : 'IGST%',
+            ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
+            false]}}
+        },
+     {
+            $Type : 'UI.DataField',
+            Value : IGST,
+            Label : 'IGST',
+            ![@UI.Hidden] : IsActiveEntity,
+        },  
+
+    ]
+};
+
 annotate service.item_new with @(
     UI.LineItem #itm_details : [
         {
@@ -236,6 +265,12 @@ annotate service.item_new with @(
             $Type : 'UI.DataField',
             Value : Item_No,
             Label : 'Item_No',
+        },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : '@UI.FieldGroup#FieldGroup2',
+            Label : 'TAX AMOUNT',
+            ![@UI.Importance] : #High,
         },{
             $Type : 'UI.DataField',
             Value : HSN_Code,
@@ -248,6 +283,11 @@ annotate service.item_new with @(
             $Type : 'UI.DataField',
             Value : Qty,
             Label : 'Qty',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Qc,
+            Label : 'Qc',
         },{
             $Type : 'UI.DataField',
             Value : Unit_Price,
@@ -281,11 +321,20 @@ annotate service.item_new with @(
             $Type : 'UI.DataField',
             Value : Tax_Amt,
             Label : 'Tax_Amt',
-        },{
+        },
+        {
             $Type : 'UI.DataField',
             Value : Total_Amt,
             Label : 'Total_Amt',
-        },]
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : IGST,
+            Label : 'IGST',
+            ![@UI.Hidden] : IsActiveEntity,
+        },
+        ]
+
 );
 annotate service.New with @(
     UI.SelectionPresentationVariant #tableView : {
@@ -1576,12 +1625,41 @@ annotate service.New with {
         },
         Common.ValueListWithFixedValues : true
 )};
-annotate service.New with @(
-    UI.Identification : [
-        {
-            $Type : 'UI.DataFieldForAction',
-            Action : 'CatalogService.showigst',
-            Label : 'showigst',
-        },
-    ]
-);
+// annotate service.New with @(
+//     UI.Identification : [
+//         {
+//             $Type : 'UI.DataFieldForAction',
+//             Action : 'CatalogService.showigst',
+//             Label : 'showigst',
+//         },
+//     ]
+// );
+annotate service.New with {
+    Ref_invoice_no @Common.FieldControl : #Mandatory
+};
+annotate service.New with {
+    invoice_date @Common.FieldControl : #Mandatory
+};
+annotate service.New with {
+    posting_date @Common.FieldControl : #Mandatory
+};
+annotate service.New with {
+    baseline_date @Common.FieldControl : #Mandatory
+};
+annotate service.New with {
+    Vendor_Code @Common.FieldControl : #Mandatory
+};
+annotate service.New with {
+    company_code @Common.FieldControl : #Mandatory
+};
+annotate service.New with {
+    currency @Common.FieldControl : #Mandatory
+};
+annotate service.New with {
+    department_name @Common.FieldControl : #Mandatory
+};
+
+
+
+
+
