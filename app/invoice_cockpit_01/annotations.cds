@@ -228,22 +228,22 @@ annotate service.item_new with @UI.FieldGroup #FieldGroup2 : {
             $Type : 'UI.DataField',
             Value : SGST,
             Label : 'SGST%',
-            ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
-            true]}}
+            // ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
+            // true]}}
         },
         {
             $Type : 'UI.DataField',
             Value : CGST,
             Label : 'CGST%',
-            ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
-            true]}}
+            // ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
+            // true]}}
         },
       {
             $Type : 'UI.DataField',
             Value : IGST_val,
             Label : 'IGST%',
-            ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
-            false]}}
+            // ![@UI.Hidden] : {$edmJson : {Eq : [{$Path : 'IGST'},
+            // false]}}
         },
      {
             $Type : 'UI.DataField',
@@ -326,12 +326,6 @@ annotate service.item_new with @(
             $Type : 'UI.DataField',
             Value : Total_Amt,
             Label : 'Total_Amt',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : IGST,
-            Label : 'IGST',
-            ![@UI.Hidden] : IsActiveEntity,
         },
         ]
 
